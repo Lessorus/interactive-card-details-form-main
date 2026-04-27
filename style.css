@@ -203,7 +203,7 @@ body {
 .error {
   min-height: 5px;
   font-size: 15px;
-  color: #911010;
+  color: #FF6961;
   text-transform: none;
   letter-spacing: 0;
   margin-top: 4px;
@@ -213,7 +213,46 @@ input.is-invalid {
   border-color: hsl(0, 100%, 66%);
 }
 
+.completed-state {
+  width: 100%;
+  max-width: 327px;
+  margin-top: 48px;
+  
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 
+  text-align: center;
+}
+
+.complete_icon {
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  letter-spacing: 4px;
+}
+
+.text_completed_state {
+  margin: 0;
+}
+
+#continue-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 15px;
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: hsl(278, 68%, 11%);
+  color: hsl(0, 0%, 100%);
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
 /* ПК ТУТ й */
 @media (min-width: 768px) {
   body {
@@ -289,21 +328,75 @@ input.is-invalid {
     max-width: 381px;
     margin-top: 0;
   }
+
+  /* completed state */
+.completed-state {
+  max-width: 370px;
+  width: 100%;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  
 }
 
+.complete_icon {
+  
+}
+
+.text_completed_state {
+  margin: 0;
+  letter-spacing: 1px;
+  color: #b5b5b5;
+  
+}
+
+h2 {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+}
+
+
+#continue-btn {
+  width: 100%;
+  margin-top: 45px;
+  padding: 15px;
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: hsl(278, 68%, 11%);
+  color: hsl(0, 0%, 100%);
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#continue-btn:hover {
+  opacity: 0.9;
+}
 /* ошибки */
 
 #card-number-error,
 #card-name-error,
 #card-exp-date-error,
 #card-cvc-error {
-  color: #911010;
+  color: #FF6961;
 }
 
 .input-error {
-  border-color: #911010;
+  border-color: #FF6961;
 }
 
 .is-hidden {
   display: none;
+}
+
+#card-number-error {
+  margin: 0;
 }

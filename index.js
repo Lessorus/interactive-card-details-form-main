@@ -1,11 +1,11 @@
 const form = document.querySelector('.card-details-form')
-
+const continueBtn = document.querySelector('#continue-btn')
 const cardNumberInput = document.querySelector('#card-number')
 const cardHolderInput = document.querySelector('#cardholder-name')
 const cardExpMonthInput = document.querySelector('#exp-month')
 const cardExpYearInput = document.querySelector('#exp-year')
 const cardCVCInput = document.querySelector('#cvc')
-
+const completedState = document.querySelector('.completed-state')
 const InteractiveCardNumber = document.querySelector('#Interactive-Card-Number')
 const InteractiveCardHolder = document.querySelector('#Interactive-Card-Name')
 const InteractiveCardExpDate = document.querySelector('#Interactive-Card-Exp-Date')
@@ -25,12 +25,9 @@ cardCVCInput.addEventListener('input', (e) => {
 })
 
 // за номер карты сначало исправление ошибок потом сам ввод
-formattedCardNumber = (value) => {
-        return value
-        .slice(0, 19)
-        .replace(/\D/g, '')
-        .replace(/(.{4})/g, '$1 ')
-        .trim()
+const formattedCardNumber = (value) => {
+        const digits = value.replace(/\D/g, '').slice(0, 16)
+        return digits.replace(/(.{4})/g, '$1 ').trim()
     }
 
     cardNumberInput.addEventListener('input', (e) => {
@@ -89,7 +86,7 @@ const errorCardNumberInput = document.getElementById('card-number-error')
 const digitsCardNumber = cardNumberInput.value.replace(/\s/g, '')
 
 if (digitsCardNumber.length < 16) {
-    showError(cardNumberInput, errorCardNumberInput, 'Wrong format') 
+    showError(cardNumberInput, errorCardNumberInput, 'Wrong format, numbers only') 
     isValid = false
 }
 
@@ -101,7 +98,7 @@ const isMonthInvalid = cardExpMonthInput.value.length < 2
 const isYearInvalid = cardExpYearInput.value.length < 2
 
 if (isMonthInvalid || isYearInvalid) {
-    errorExpDateInput.textContent = 'Invalid date'
+    errorExpDateInput.textContent = "Can't be blank"
 
 
 if (isMonthInvalid) {
@@ -118,22 +115,36 @@ const errorCVCInput = document.getElementById('cvc-error')
 const digitsCVC = cardCVCInput.value.replace(/\D/g, '')
 
 if (digitsCVC.length < 3) {
-  showError(cardCVCInput, errorCVCInput, 'Wrong CVC')
+  showError(cardCVCInput, errorCVCInput, "Can't be blank")
   isValid = false
 }
 
 const errorNameInput = document.getElementById('cardholder-name-error')
 if (!cardHolderInput.value.trim()) {
   showError(cardHolderInput, errorNameInput, "Can't be blank")
+  isValid = false
 }
+
+
 
 if (isValid) {
-  form.style.display = 'none'
-  document.querySelector('.completed-state').style.display = 'block'
-
-  <form class="card-details-form is-hidden"></form>
-<fieldset class="completed-state"></fieldset>
+  form.classList.add('is-hidden')
+  completedState.classList.remove('is-hidden')
 }
+
+console.log({
+  cardNumber: digitsCardNumber.length,
+  month: cardExpMonthInput.value,
+  year: cardExpYearInput.value,
+  cvc: digitsCVC.length,
+  name: cardHolderInput.value,
+  isValid
 })
 
+
+})
+    continueBtn.addEventListener('click', () => {
+    completedState.classList.add('is-hidden')
+    form.classList.remove('is-hidden')
+})
 
